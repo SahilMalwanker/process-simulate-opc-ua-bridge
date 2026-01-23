@@ -1,0 +1,47 @@
+name: Bug report
+description: Something doesn't work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please remove hostnames, IP addresses and site-specific signal names from logs before posting.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - OPC UA server
+        - Operator panel (opcua_control_app.py)
+        - Sequencer (opcua_sequencer.py)
+        - Joint reader (read_joints.py)
+        - Process Simulate scripts
+        - Setup and build scripts
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Start the server with run_server.bat
+        2. ...
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Server console output, sequencer log or Python traceback.
+      render: text
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: Windows 11, Python 3.13, Process Simulate version

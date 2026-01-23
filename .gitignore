@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets and local logs
+*.key
+.env
+.env.*
+*.log
+
+# PyInstaller output (py -m PyInstaller client\opcua_control_app.spec)
+build/
+dist/
+
+# Windows runtime and packaged binaries
+*.dll
+*.exe
+
+# open62541 source, cloned as described in third_party/README.md
+/third_party/open62541/
+
+# Machine-specific server identity and trust store (create with server/setup_new_pc.ps1)
+*.pem
+open62541_server_cert.der
+open62541_pki/
+
+# Process Simulate studies can contain proprietary models
+*.psz
+
+# Items set aside during the restructure
+/_review/

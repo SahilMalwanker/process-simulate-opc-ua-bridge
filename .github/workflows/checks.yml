@@ -1,0 +1,35 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Compile Python sources
+        run: python -m compileall -q client server legacy
+
+      - name: Parse PowerShell scripts
+        shell: pwsh
+        run: |
+          $failed = $false
+          foreach ($file in Get-ChildItem server -Filter *.ps1) {
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$null, [ref]$errors) | Out-Null
+            foreach ($e in $errors) {
+              Write-Host "::error file=server/$($file.Name),line=$($e.Extent.StartLineNumber)::$($e.Message)"
+              $failed = $true
+            }
+          }
+          if ($failed) { exit 1 }
