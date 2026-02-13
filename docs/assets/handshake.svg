@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-labelledby="title desc">
+  <title id="title">Step handshake</title>
+  <desc id="desc">Timing diagram of one sequencer step. With the group control high, the sequencer checks that the end signal is low, sets the start signal, waits for the end signal to rise, clears the start signal, waits for the end signal to fall, pauses 0.5 seconds and starts the next step.</desc>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#FFFFFF" fill-opacity="0.05"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#9B97B0"/></marker>
+    <linearGradient id="sweep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#00B3B3" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#00B3B3" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#00B3B3" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    .mono { font-family: 'Cascadia Mono', Consolas, 'SFMono-Regular', Menlo, monospace; }
+    .row { font-size: 16px; font-weight: 700; fill: #FFFFFF; }
+    .wave { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+    .base { stroke: #3D3666; stroke-width: 1; }
+    .guide { stroke: #4E4876; stroke-width: 1; stroke-dasharray: 3 5; }
+    .num { fill: #252046; stroke: #00B3B3; stroke-width: 2; }
+    .numtxt { font-size: 13px; font-weight: 700; fill: #FFFFFF; text-anchor: middle; }
+    .legend { font-size: 14px; fill: #C9C6DA; }
+    .note { font-size: 12.5px; fill: #9B97B0; font-style: italic; }
+    .sweep { animation: sweep 7s linear infinite; }
+    @keyframes sweep { 0% { transform: translateX(0); opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { transform: translateX(970px); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .sweep { animation: none; opacity: 0; } }
+  </style>
+
+  <rect width="1280" height="520" rx="24" fill="#1B1534"/>
+  <rect width="1280" height="520" rx="24" fill="url(#dots)"/>
+  <text class="sans" x="40" y="54" font-size="13" font-weight="600" letter-spacing="3" fill="#00B3B3">ONE STEP OF THE SEQUENCE</text>
+
+  <!-- Row labels -->
+  <text class="sans row" x="40" y="124">Group control</text>
+  <text class="mono" x="40" y="145" font-size="12.5" fill="#B9B4D6">Trigger.SecondOp</text>
+  <text class="sans row" x="40" y="214">Start signal</text>
+  <text class="mono" x="40" y="235" font-size="12.5" fill="#00B3B3">Trigger.Op2_1Start</text>
+  <text class="sans row" x="40" y="304">End signal</text>
+  <text class="mono" x="40" y="325" font-size="12.5" fill="#FFB347">Feedback.Pick_Part_end</text>
+
+  <!-- Baselines and guides -->
+  <line class="base" x1="270" y1="140" x2="1240" y2="140"/>
+  <line class="base" x1="270" y1="230" x2="1240" y2="230"/>
+  <line class="base" x1="270" y1="320" x2="1240" y2="320"/>
+  <line class="guide" x1="420" y1="96" x2="420" y2="340"/>
+  <line class="guide" x1="660" y1="96" x2="660" y2="340"/>
+  <line class="guide" x1="720" y1="96" x2="720" y2="340"/>
+  <line class="guide" x1="930" y1="96" x2="930" y2="340"/>
+  <line class="guide" x1="1080" y1="96" x2="1080" y2="340"/>
+
+  <!-- Waveforms -->
+  <path class="wave" d="M270 140 H300 V112 H1240" stroke="#B9B4D6"/>
+  <path class="wave" d="M270 230 H420 V202 H720 V230 H1080" stroke="#00B3B3"/>
+  <path class="wave" d="M1080 230 V202 H1240" stroke="#00B3B3" stroke-dasharray="6 6" stroke-opacity="0.6"/>
+  <text class="sans" x="1090" y="194" font-size="12" fill="#9B97B0">next step</text>
+  <path class="wave" d="M270 320 H660 V292 H930 V320 H1240" stroke="#FFB347"/>
+
+  <!-- Cause and effect -->
+  <path d="M430 214 C 520 224, 600 278, 652 296" fill="none" stroke="#9B97B0" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+  <text class="sans note" x="540" y="184" text-anchor="middle">operation running</text>
+  <path d="M728 238 C 800 252, 872 300, 922 316" fill="none" stroke="#9B97B0" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+  <text class="sans note" x="825" y="184" text-anchor="middle">end signal resetting</text>
+
+  <!-- Phase numbers -->
+  <g class="sans">
+    <circle class="num" cx="345" cy="78" r="13"/><text class="numtxt" x="345" y="83">1</text>
+    <circle class="num" cx="420" cy="78" r="13"/><text class="numtxt" x="420" y="83">2</text>
+    <circle class="num" cx="540" cy="78" r="13"/><text class="numtxt" x="540" y="83">3</text>
+    <circle class="num" cx="720" cy="78" r="13"/><text class="numtxt" x="720" y="83">4</text>
+    <circle class="num" cx="825" cy="78" r="13"/><text class="numtxt" x="825" y="83">5</text>
+    <circle class="num" cx="1005" cy="78" r="13"/><text class="numtxt" x="1005" y="83">6</text>
+  </g>
+
+  <g class="sweep">
+    <rect x="268" y="96" width="4" height="244" fill="url(#sweep)"/>
+  </g>
+  <text class="sans" x="1240" y="358" font-size="12" fill="#7E7A9A" text-anchor="end">time →</text>
+
+  <!-- Legend -->
+  <line x1="40" y1="372" x2="1240" y2="372" stroke="#3D3666"/>
+  <g class="sans">
+    <circle class="num" cx="53" cy="400" r="11"/><text class="numtxt" x="53" y="405" font-size="12">1</text>
+    <text class="legend" x="74" y="405">Wait until the end signal is low (left over from an earlier run)</text>
+    <circle class="num" cx="53" cy="430" r="11"/><text class="numtxt" x="53" y="435" font-size="12">2</text>
+    <text class="legend" x="74" y="435">Set the start signal</text>
+    <circle class="num" cx="53" cy="460" r="11"/><text class="numtxt" x="53" y="465" font-size="12">3</text>
+    <text class="legend" x="74" y="465">Wait for the end signal to rise · timeout 60 s</text>
+    <circle class="num" cx="673" cy="400" r="11"/><text class="numtxt" x="673" y="405" font-size="12">4</text>
+    <text class="legend" x="694" y="405">Clear the start signal</text>
+    <circle class="num" cx="673" cy="430" r="11"/><text class="numtxt" x="673" y="435" font-size="12">5</text>
+    <text class="legend" x="694" y="435">Wait for the end signal to fall · timeout 30 s</text>
+    <circle class="num" cx="673" cy="460" r="11"/><text class="numtxt" x="673" y="465" font-size="12">6</text>
+    <text class="legend" x="694" y="465">Pause 0.5 s, then start the next step</text>
+  </g>
+  <text class="sans" x="40" y="500" font-size="13" fill="#9B97B0">If the group control drops during a wait, the step is aborted and its start signal cleared. On exit, every start signal and group control is reset.</text>
+</svg>

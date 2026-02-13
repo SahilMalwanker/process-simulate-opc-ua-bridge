@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">Architecture</title>
+  <desc id="desc">Process Simulate, the control app, the sequencer and the joint reader are all OPC UA clients of one open62541 server. Start signals flow from the server to Process Simulate, end signals and joint angles flow back, and the Python tools read and write the same variables.</desc>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#FFFFFF" fill-opacity="0.05"/>
+    </pattern>
+    <marker id="a-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#00B3B3"/></marker>
+    <marker id="a-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#FFB347"/></marker>
+    <marker id="a-lav" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#C9C6DA"/></marker>
+  </defs>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    .mono { font-family: 'Cascadia Mono', Consolas, 'SFMono-Regular', Menlo, monospace; }
+    .card { fill: #252046; stroke: #3D3666; stroke-width: 1.5; }
+    .h { font-size: 20px; font-weight: 700; fill: #FFFFFF; }
+    .h2 { font-size: 18px; font-weight: 700; fill: #FFFFFF; }
+    .sub { font-size: 13.5px; fill: #C9C6DA; }
+    .dim { font-size: 12.5px; fill: #9B97B0; }
+    .lbl { font-size: 12.5px; font-weight: 600; }
+    .icon { fill: none; stroke: #00B3B3; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .flow { stroke-width: 2.2; stroke-dasharray: 5 6; animation: flow 1.2s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -22; } }
+    @media (prefers-reduced-motion: reduce) { .flow { animation: none; } }
+  </style>
+
+  <rect width="1280" height="560" rx="24" fill="#1B1534"/>
+  <rect width="1280" height="560" rx="24" fill="url(#dots)"/>
+  <text class="sans" x="40" y="54" font-size="13" font-weight="600" letter-spacing="3" fill="#00B3B3">HOW THE PIECES CONNECT</text>
+
+  <!-- Process Simulate -->
+  <rect class="card" x="40" y="110" width="300" height="320" rx="16"/>
+  <g class="icon">
+    <path d="M64 156 h28"/>
+    <path d="M78 156 v-8 l8 -12 l-12 -6"/>
+    <circle cx="78" cy="148" r="2.5"/>
+    <circle cx="86" cy="136" r="2.5"/>
+  </g>
+  <text class="sans h" x="104" y="152">Process Simulate</text>
+  <text class="sans sub" x="64" y="186">Your study, connected as an OPC UA client</text>
+  <text class="mono" x="64" y="230" font-size="13.5" fill="#00B3B3">Trigger.*</text>
+  <text class="sans dim" x="64" y="250">start signals for operations</text>
+  <text class="mono" x="64" y="294" font-size="13.5" fill="#FFB347">Feedback.*</text>
+  <text class="sans dim" x="64" y="314">end signals of operations</text>
+  <text class="mono" x="64" y="358" font-size="13.5" fill="#C9C6DA">PS.Robot1…3.j1…j6</text>
+  <text class="sans dim" x="64" y="378">joint angles from BroadcastRobotJoints.cs</text>
+
+  <!-- OPC UA server -->
+  <rect class="card" x="470" y="90" width="340" height="400" rx="16" stroke="#00B3B3" stroke-opacity="0.6"/>
+  <path class="icon" d="M508 112 l12 7 v14 l-12 7 l-12 -7 v-14 z"/>
+  <circle cx="508" cy="126" r="3" fill="#00B3B3"/>
+  <text class="sans h" x="534" y="134">OPC UA server</text>
+  <text class="mono" x="494" y="166" font-size="13" fill="#9B97B0">open62541 · opc.tcp://host:4841</text>
+  <rect x="494" y="184" width="292" height="220" rx="10" fill="#1B1534" stroke="#3D3666"/>
+  <g class="mono" font-size="13" fill="#E8E6F0">
+    <text x="512" y="212">Objects</text>
+    <text x="512" y="236">├─ PS</text>
+    <text x="512" y="260">│  └─ Robot1…3 ─ j1…j6</text>
+    <text x="512" y="284">├─ Trigger</text>
+    <text x="512" y="308">│  ├─ FirstOp … FourthOp</text>
+    <text x="512" y="332">│  └─ Op1_1Start …</text>
+    <text x="512" y="356">└─ Feedback</text>
+    <text x="512" y="380">   └─ &lt;Operation&gt;_end</text>
+  </g>
+  <g class="mono" font-size="12" text-anchor="end">
+    <text x="772" y="260" fill="#C9C6DA">Double</text>
+    <text x="772" y="308" fill="#00B3B3">Bool</text>
+    <text x="772" y="332" fill="#00B3B3">Bool</text>
+    <text x="772" y="380" fill="#FFB347">Bool</text>
+  </g>
+  <text class="sans dim" x="640" y="446" text-anchor="middle">A shared signal bus: the server stores values,</text>
+  <text class="sans dim" x="640" y="466" text-anchor="middle">the clients hold the logic.</text>
+
+  <!-- Python clients -->
+  <rect class="card" x="940" y="90" width="300" height="110" rx="16"/>
+  <g class="icon">
+    <rect x="964" y="110" width="26" height="20" rx="3"/>
+    <path d="M964 116 h26 M971 122 v5 M977 120 v7 M983 124 v3"/>
+  </g>
+  <text class="sans h2" x="1002" y="127">Control app</text>
+  <text class="sans sub" x="964" y="158">Tkinter operator panel</text>
+  <text class="sans dim" x="964" y="181">build · run · select group · watch joints</text>
+
+  <rect class="card" x="940" y="225" width="300" height="110" rx="16"/>
+  <g class="icon">
+    <path d="M964 247 l3 3 l5 -6 M964 257 l3 3 l5 -6 M964 267 l8 0"/>
+    <path d="M977 247 h13 M977 257 h13 M977 267 h13"/>
+  </g>
+  <text class="sans h2" x="1002" y="262">Sequencer</text>
+  <text class="sans sub" x="964" y="293">asyncio handshake engine</text>
+  <text class="sans dim" x="964" y="316">start ↑ → end ↑ → start ↓ → end ↓</text>
+
+  <rect class="card" x="940" y="360" width="300" height="110" rx="16"/>
+  <path class="icon" d="M964 393 h5 l3 -9 l5 18 l5 -14 l3 5 h5"/>
+  <text class="sans h2" x="1002" y="397">Joint reader</text>
+  <text class="sans sub" x="964" y="428">Command-line monitor</text>
+  <text class="sans dim" x="964" y="451">all 18 joint values in one batched read</text>
+
+  <!-- Lanes: Process Simulate <-> server -->
+  <line class="flow" x1="466" y1="240" x2="346" y2="240" stroke="#00B3B3" marker-end="url(#a-teal)"/>
+  <text class="sans lbl" x="405" y="229" text-anchor="middle" fill="#00B3B3">start</text>
+  <line class="flow" x1="344" y1="304" x2="464" y2="304" stroke="#FFB347" marker-end="url(#a-amber)"/>
+  <text class="sans lbl" x="405" y="293" text-anchor="middle" fill="#FFB347">end</text>
+  <line class="flow" x1="344" y1="368" x2="464" y2="368" stroke="#C9C6DA" marker-end="url(#a-lav)"/>
+  <text class="sans lbl" x="405" y="357" text-anchor="middle" fill="#C9C6DA">joints</text>
+
+  <!-- Lanes: server <-> Python clients -->
+  <line class="flow" x1="936" y1="136" x2="816" y2="136" stroke="#00B3B3" marker-end="url(#a-teal)"/>
+  <text class="sans lbl" x="875" y="125" text-anchor="middle" fill="#00B3B3">group</text>
+  <line class="flow" x1="814" y1="156" x2="934" y2="156" stroke="#C9C6DA" marker-end="url(#a-lav)"/>
+  <text class="sans lbl" x="875" y="178" text-anchor="middle" fill="#C9C6DA">joints</text>
+
+  <line class="flow" x1="936" y1="270" x2="816" y2="270" stroke="#00B3B3" marker-end="url(#a-teal)"/>
+  <text class="sans lbl" x="875" y="259" text-anchor="middle" fill="#00B3B3">start</text>
+  <line class="flow" x1="814" y1="290" x2="934" y2="290" stroke="#FFB347" marker-end="url(#a-amber)"/>
+  <text class="sans lbl" x="875" y="312" text-anchor="middle" fill="#FFB347">end</text>
+
+  <line class="flow" x1="814" y1="415" x2="934" y2="415" stroke="#C9C6DA" marker-end="url(#a-lav)"/>
+  <text class="sans lbl" x="875" y="404" text-anchor="middle" fill="#C9C6DA">joints</text>
+
+  <!-- Legend -->
+  <g class="sans" font-size="13" fill="#C9C6DA">
+    <line x1="40" y1="524" x2="68" y2="524" stroke="#00B3B3" stroke-width="3" stroke-linecap="round"/>
+    <text x="78" y="529">start signals <tspan class="mono" fill="#9B97B0">Trigger.*</tspan></text>
+    <line x1="300" y1="524" x2="328" y2="524" stroke="#FFB347" stroke-width="3" stroke-linecap="round"/>
+    <text x="338" y="529">end signals <tspan class="mono" fill="#9B97B0">Feedback.*</tspan></text>
+    <line x1="560" y1="524" x2="588" y2="524" stroke="#C9C6DA" stroke-width="3" stroke-linecap="round"/>
+    <text x="598" y="529">joint values <tspan class="mono" fill="#9B97B0">PS.RobotN.jM</tspan></text>
+  </g>
+  <text class="sans" x="1240" y="529" font-size="12.5" fill="#7E7A9A" text-anchor="end">Arrows show the direction data flows</text>
+</svg>

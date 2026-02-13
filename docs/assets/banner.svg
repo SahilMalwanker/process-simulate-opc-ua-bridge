@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-labelledby="title desc">
+  <title id="title">Process Simulate OPC UA Bridge</title>
+  <desc id="desc">A robot arm linked to three OPC UA signals: a start signal, an end signal and a joint angle.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B1534"/>
+      <stop offset="0.55" stop-color="#1F1A47"/>
+      <stop offset="1" stop-color="#0E3946"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.8" cy="0.62" r="0.42">
+      <stop offset="0" stop-color="#009999" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#009999" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00C2B8"/>
+      <stop offset="1" stop-color="#6FE3D3"/>
+    </linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#FFFFFF" fill-opacity="0.06"/>
+    </pattern>
+    <clipPath id="frame"><rect width="1280" height="400" rx="24"/></clipPath>
+  </defs>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    .mono { font-family: 'Cascadia Mono', Consolas, 'SFMono-Regular', Menlo, monospace; }
+    .flow { stroke-dasharray: 3 7; animation: flow 1.4s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -20; } }
+    .float-a { animation: float 6s ease-in-out infinite; }
+    .float-b { animation: float 7s ease-in-out -2s infinite; }
+    .float-c { animation: float 6.5s ease-in-out -4s infinite; }
+    @keyframes float { 50% { transform: translateY(-7px); } }
+    .pulse { animation: pulse 2.4s ease-in-out infinite; }
+    @keyframes pulse { 50% { opacity: 0.3; } }
+    @media (prefers-reduced-motion: reduce) {
+      .flow, .float-a, .float-b, .float-c, .pulse { animation: none; }
+    }
+  </style>
+
+  <g clip-path="url(#frame)">
+    <rect width="1280" height="400" fill="url(#bg)"/>
+    <rect width="1280" height="400" fill="url(#dots)"/>
+    <rect width="1280" height="400" fill="url(#glow)"/>
+    <circle cx="1080" cy="282" r="190" fill="none" stroke="#00B3B3" stroke-opacity="0.12"/>
+    <circle cx="1080" cy="282" r="250" fill="none" stroke="#00B3B3" stroke-opacity="0.12" stroke-dasharray="2 8"/>
+
+    <!-- Text -->
+    <text class="sans" x="72" y="104" font-size="14" font-weight="600" letter-spacing="3" fill="#00B3B3">OPC UA  ·  PROCESS SIMULATE  ·  PYTHON</text>
+    <text class="sans" x="70" y="170" font-size="60" font-weight="700" fill="#FFFFFF">Process Simulate</text>
+    <text class="sans" x="70" y="236" font-size="60" font-weight="700" fill="url(#accent)">OPC UA Bridge</text>
+    <text class="sans" x="72" y="282" font-size="19" fill="#C9C6DA">Drive any Process Simulate study from outside the simulation:</text>
+    <text class="sans" x="72" y="308" font-size="19" fill="#C9C6DA">sequence operations, read end signals, stream robot joints.</text>
+
+    <g class="sans" font-size="14" fill="#E8E6F0">
+      <rect x="72" y="332" width="164" height="34" rx="17" fill="#FFFFFF" fill-opacity="0.05" stroke="#4A4380"/>
+      <circle cx="91" cy="349" r="4" fill="#00B3B3"/>
+      <text x="103" y="354">open62541 server</text>
+      <rect x="246" y="332" width="160" height="34" rx="17" fill="#FFFFFF" fill-opacity="0.05" stroke="#4A4380"/>
+      <circle cx="265" cy="349" r="4" fill="#FFB347"/>
+      <text x="277" y="354">Python · asyncio</text>
+      <rect x="416" y="332" width="132" height="34" rx="17" fill="#FFFFFF" fill-opacity="0.05" stroke="#4A4380"/>
+      <circle cx="435" cy="349" r="4" fill="#C9C6DA"/>
+      <text x="447" y="354">.NET scripts</text>
+    </g>
+
+    <!-- Signal connectors -->
+    <path class="flow" d="M820 122 C 820 170, 842 190, 842 226" fill="none" stroke="#00B3B3" stroke-width="2"/>
+    <path class="flow" d="M850 310 C 850 292, 848 282, 846 268" fill="none" stroke="#FFB347" stroke-width="2"/>
+    <path class="flow" d="M1018 80 C 1018 118, 992 138, 986 156" fill="none" stroke="#C9C6DA" stroke-width="2"/>
+
+    <!-- Robot arm -->
+    <ellipse cx="1080" cy="356" rx="96" ry="10" fill="#000000" fill-opacity="0.28"/>
+    <rect x="1018" y="330" width="124" height="22" rx="6" fill="#2A2459" stroke="#4A4380" stroke-width="2"/>
+    <rect x="1046" y="288" width="68" height="44" rx="9" fill="#2A2459" stroke="#4A4380" stroke-width="2"/>
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="0 1080 282; -7 1080 282; 3 1080 282; 0 1080 282" keyTimes="0; 0.35; 0.7; 1" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1; 0.45 0 0.55 1" dur="9s" repeatCount="indefinite"/>
+      <line x1="1080" y1="282" x2="985" y2="170" stroke="#00B3B3" stroke-opacity="0.35" stroke-width="36" stroke-linecap="round"/>
+      <line x1="1080" y1="282" x2="985" y2="170" stroke="#342E6E" stroke-width="30" stroke-linecap="round"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="0 985 170; 14 985 170; -8 985 170; 0 985 170" keyTimes="0; 0.35; 0.7; 1" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1; 0.45 0 0.55 1" dur="9s" repeatCount="indefinite"/>
+        <line x1="985" y1="170" x2="870" y2="200" stroke="#00B3B3" stroke-opacity="0.35" stroke-width="30" stroke-linecap="round"/>
+        <line x1="985" y1="170" x2="870" y2="200" stroke="#342E6E" stroke-width="24" stroke-linecap="round"/>
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values="0 870 200; -20 870 200; 12 870 200; 0 870 200" keyTimes="0; 0.35; 0.7; 1" calcMode="spline" keySplines="0.45 0 0.55 1; 0.45 0 0.55 1; 0.45 0 0.55 1" dur="9s" repeatCount="indefinite"/>
+          <line x1="870" y1="200" x2="842" y2="236" stroke="#00B3B3" stroke-opacity="0.35" stroke-width="20" stroke-linecap="round"/>
+          <line x1="870" y1="200" x2="842" y2="236" stroke="#342E6E" stroke-width="14" stroke-linecap="round"/>
+          <path d="M850 242 L839 256 M834 230 L823 244" stroke="#C9C6DA" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="842" cy="236" r="8" fill="#1B1534" stroke="#00B3B3" stroke-width="3"/>
+          <circle class="pulse" cx="842" cy="236" r="3" fill="#00B3B3"/>
+        </g>
+        <circle cx="870" cy="200" r="13" fill="#1B1534" stroke="#00B3B3" stroke-width="4"/>
+        <circle cx="870" cy="200" r="4" fill="#00B3B3"/>
+      </g>
+      <circle cx="985" cy="170" r="18" fill="#1B1534" stroke="#00B3B3" stroke-width="4"/>
+      <circle cx="985" cy="170" r="6" fill="#00B3B3"/>
+    </g>
+    <circle cx="1080" cy="282" r="22" fill="#1B1534" stroke="#00B3B3" stroke-width="4"/>
+    <circle cx="1080" cy="282" r="7" fill="#00B3B3"/>
+
+    <!-- Signal tags -->
+    <g class="float-a">
+      <rect x="690" y="78" width="262" height="44" rx="12" fill="#252046" stroke="#3D3666"/>
+      <circle class="pulse" cx="712" cy="100" r="5" fill="#00B3B3"/>
+      <text class="mono" x="726" y="105" font-size="15" fill="#E8E6F0">Trigger.Op1_1Start</text>
+      <text class="mono" x="938" y="105" font-size="15" font-weight="700" fill="#00B3B3" text-anchor="end">true</text>
+    </g>
+    <g class="float-b">
+      <rect x="700" y="310" width="300" height="44" rx="12" fill="#252046" stroke="#3D3666"/>
+      <circle class="pulse" cx="722" cy="332" r="5" fill="#FFB347"/>
+      <text class="mono" x="736" y="337" font-size="15" fill="#E8E6F0">Feedback.Pick_Part_end</text>
+      <text class="mono" x="986" y="337" font-size="15" font-weight="700" fill="#FFB347" text-anchor="end">true</text>
+    </g>
+    <g class="float-c">
+      <rect x="900" y="36" width="236" height="44" rx="12" fill="#252046" stroke="#3D3666"/>
+      <circle class="pulse" cx="922" cy="58" r="5" fill="#C9C6DA"/>
+      <text class="mono" x="936" y="63" font-size="15" fill="#E8E6F0">PS.Robot1.j2</text>
+      <text class="mono" x="1122" y="63" font-size="15" font-weight="700" fill="#C9C6DA" text-anchor="end">−37.4°</text>
+    </g>
+
+    <text class="mono" x="1236" y="384" font-size="13" fill="#6F6A92" text-anchor="end">opc.tcp://localhost:4841</text>
+  </g>
+</svg>

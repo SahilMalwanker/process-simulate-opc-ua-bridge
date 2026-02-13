@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="492" viewBox="0 0 1280 492" role="img" aria-labelledby="title desc">
+  <title id="title">Measured cycle timeline</title>
+  <desc id="desc">Gantt chart of one sequencer cycle with 5 steps, measured from the sequencer log. Each step shows how long the operation ran, how long its end signal took to reset and the pause before the next step. Total cycle time 9.8 seconds.</desc>
+  <defs>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#FFFFFF" fill-opacity="0.05"/>
+    </pattern>
+  </defs>
+  <style>
+    .sans { font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    .mono { font-family: 'Cascadia Mono', Consolas, 'SFMono-Regular', Menlo, monospace; }
+  </style>
+  <rect width="1280" height="492" rx="24" fill="#1B1534"/>
+  <rect width="1280" height="492" rx="24" fill="url(#dots)"/>
+  <text class="sans" x="40" y="54" font-size="13" font-weight="600" letter-spacing="3" fill="#00B3B3">ONE CYCLE, MEASURED</text>
+  <text class="sans" x="40" y="80" font-size="14" fill="#9B97B0">SecondOp · 5 steps · demo configuration against a simulated cell</text>
+  <text class="sans" x="1240" y="46" font-size="13" fill="#9B97B0" text-anchor="end">Cycle time</text>
+  <text class="sans" x="1240" y="80" font-size="30" font-weight="700" fill="#E8E6F0" text-anchor="end">9.8 s</text>
+    <line x1="270.0" y1="102" x2="270.0" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="270.0" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">0 s</text>
+  <line x1="369.4" y1="102" x2="369.4" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="369.4" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">1 s</text>
+  <line x1="468.8" y1="102" x2="468.8" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="468.8" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">2 s</text>
+  <line x1="568.2" y1="102" x2="568.2" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="568.2" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">3 s</text>
+  <line x1="667.6" y1="102" x2="667.6" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="667.6" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">4 s</text>
+  <line x1="767.0" y1="102" x2="767.0" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="767.0" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">5 s</text>
+  <line x1="866.4" y1="102" x2="866.4" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="866.4" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">6 s</text>
+  <line x1="965.8" y1="102" x2="965.8" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="965.8" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">7 s</text>
+  <line x1="1065.1" y1="102" x2="1065.1" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="1065.1" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">8 s</text>
+  <line x1="1164.5" y1="102" x2="1164.5" y2="380" stroke="#2E2858"/>
+  <text class="sans" x="1164.5" y="400" font-size="12" fill="#9B97B0" text-anchor="middle">9 s</text>
+  <text class="mono" x="40" y="143" font-size="13" fill="#00B3B3">Op2.1</text>
+  <text class="sans" x="98" y="143" font-size="15" fill="#E8E6F0">Pick part</text>
+  <rect x="270.0" y="126" width="89.9" height="24" rx="5" fill="#00B3B3" fill-opacity="1.0"/>
+  <rect x="360.0" y="126" width="33.9" height="24" rx="5" fill="#FFB347" fill-opacity="1.0"/>
+  <rect x="393.9" y="126" width="50.4" height="24" rx="5" fill="#B9B4D6" fill-opacity="0.35"/>
+  <text class="sans" x="315.0" y="142.5" font-size="12.5" font-weight="700" fill="#10202A" text-anchor="middle">0.90 s</text>
+  <text class="mono" x="40" y="195" font-size="13" fill="#00B3B3">Op2.2</text>
+  <text class="sans" x="98" y="195" font-size="15" fill="#E8E6F0">Load fixture</text>
+  <rect x="444.4" y="178" width="118.8" height="24" rx="5" fill="#00B3B3" fill-opacity="1.0"/>
+  <rect x="563.3" y="178" width="26.8" height="24" rx="5" fill="#FFB347" fill-opacity="1.0"/>
+  <rect x="590.1" y="178" width="51.4" height="24" rx="5" fill="#B9B4D6" fill-opacity="0.35"/>
+  <text class="sans" x="503.8" y="194.5" font-size="12.5" font-weight="700" fill="#10202A" text-anchor="middle">1.20 s</text>
+  <text class="mono" x="40" y="247" font-size="13" fill="#00B3B3">Op2.3</text>
+  <text class="sans" x="98" y="247" font-size="15" fill="#E8E6F0">Weld seam</text>
+  <rect x="641.5" y="230" width="162.4" height="24" rx="5" fill="#00B3B3" fill-opacity="1.0"/>
+  <rect x="804.0" y="230" width="43.5" height="24" rx="5" fill="#FFB347" fill-opacity="1.0"/>
+  <rect x="847.5" y="230" width="50.8" height="24" rx="5" fill="#B9B4D6" fill-opacity="0.35"/>
+  <text class="sans" x="722.7" y="246.5" font-size="12.5" font-weight="700" fill="#10202A" text-anchor="middle">1.63 s</text>
+  <text class="mono" x="40" y="299" font-size="13" fill="#00B3B3">Op2.4</text>
+  <text class="sans" x="98" y="299" font-size="15" fill="#E8E6F0">Inspect</text>
+  <rect x="898.3" y="282" width="65.3" height="24" rx="5" fill="#00B3B3" fill-opacity="1.0"/>
+  <rect x="963.7" y="282" width="33.0" height="24" rx="5" fill="#FFB347" fill-opacity="1.0"/>
+  <rect x="996.6" y="282" width="50.7" height="24" rx="5" fill="#B9B4D6" fill-opacity="0.35"/>
+  <text class="sans" x="931.0" y="298.5" font-size="12.5" font-weight="700" fill="#10202A" text-anchor="middle">0.66 s</text>
+  <text class="mono" x="40" y="351" font-size="13" fill="#00B3B3">Op2.5</text>
+  <text class="sans" x="98" y="351" font-size="15" fill="#E8E6F0">Unload part</text>
+  <rect x="1047.4" y="334" width="97.6" height="24" rx="5" fill="#00B3B3" fill-opacity="1.0"/>
+  <rect x="1145.1" y="334" width="43.8" height="24" rx="5" fill="#FFB347" fill-opacity="1.0"/>
+  <rect x="1188.9" y="334" width="51.1" height="24" rx="5" fill="#B9B4D6" fill-opacity="0.35"/>
+  <text class="sans" x="1096.2" y="350.5" font-size="12.5" font-weight="700" fill="#10202A" text-anchor="middle">0.98 s</text>
+  <rect x="40" y="430" width="28" height="14" rx="4" fill="#00B3B3" fill-opacity="1.0"/>
+  <text class="sans" x="78" y="442" font-size="13.5" fill="#C9C6DA">operation running <tspan fill="#9B97B0">(start ↑ → end ↑)</tspan></text>
+  <rect x="370" y="430" width="28" height="14" rx="4" fill="#FFB347" fill-opacity="1.0"/>
+  <text class="sans" x="408" y="442" font-size="13.5" fill="#C9C6DA">end signal resetting <tspan fill="#9B97B0">(start ↓ → end ↓)</tspan></text>
+  <rect x="700" y="430" width="28" height="14" rx="4" fill="#B9B4D6" fill-opacity="0.35"/>
+  <text class="sans" x="738" y="442" font-size="13.5" fill="#C9C6DA">pause before next step <tspan fill="#9B97B0">(0.5 s)</tspan></text>
+</svg>
