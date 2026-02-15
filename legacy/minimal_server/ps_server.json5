@@ -1,0 +1,53 @@
+// Minimal open62541 server config for Process Simulate
+{
+  applicationDescription: {
+    applicationUri: "urn:opcua-ps-server:open62541:ps",
+    applicationName: { locale: "en-US", text: "open62541 PS Server" },
+    applicationType: 0,
+    productUri: "urn:open62541:ps",
+    discoveryUrls: [
+      "opc.tcp://127.0.0.1:4841"
+    ]
+  },
+
+  // Bind/listen URLs
+  serverUrls: [
+    "opc.tcp://127.0.0.1:4841"
+  ],
+
+  tcpEnabled: true,
+  tcp: {
+    tcpBufSize: 65535,
+    tcpMaxMsgSize: 0,
+    tcpMaxChunks: 0
+  },
+
+  subscriptionsEnabled: true,
+
+  // Security policies - all require certificate/key even for None
+  securityPolicies: [
+    {
+      policy: "http://opcfoundation.org/UA/SecurityPolicy#None",
+      certificate: "./open62541_server_cert.der",
+      privateKey: "./open62541_server_key.pem"
+    },
+    {
+      policy: "http://opcfoundation.org/UA/SecurityPolicy#Basic256Sha256",
+      certificate: "./open62541_server_cert.der",
+      privateKey: "./open62541_server_key.pem"
+    },
+    {
+      policy: "http://opcfoundation.org/UA/SecurityPolicy#Aes128_Sha256_RsaOaep",
+      certificate: "./open62541_server_cert.der",
+      privateKey: "./open62541_server_key.pem"
+    },
+    {
+      policy: "http://opcfoundation.org/UA/SecurityPolicy#Aes256_Sha256_RsaPss",
+      certificate: "./open62541_server_cert.der",
+      privateKey: "./open62541_server_key.pem"
+    }
+  ],
+
+  // PKI folder for client certificate trust
+  pkiFolder: "./open62541_pki"
+}
