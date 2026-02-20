@@ -1,0 +1,84 @@
+diff --git a/examples/client.c b/examples/client.c
+index f767e96..d9a5665 100644
+--- a/examples/client.c
++++ b/examples/client.c
+@@ -29,14 +29,36 @@ nodeIter(UA_NodeId childId, UA_Boolean isInverse, UA_NodeId referenceTypeId, voi
+     return UA_STATUSCODE_GOOD;
+ }
+ 
++static const char *
++userTokenTypeToString(UA_UserTokenType type) {
++    switch(type) {
++        case UA_USERTOKENTYPE_ANONYMOUS: return "Anonymous";
++        case UA_USERTOKENTYPE_USERNAME: return "UserName";
++        case UA_USERTOKENTYPE_CERTIFICATE: return "Certificate";
++        case UA_USERTOKENTYPE_ISSUEDTOKEN: return "IssuedToken";
++        default: return "Unknown";
++    }
++}
++
++static const char *
++securityModeToString(UA_MessageSecurityMode mode) {
++    switch(mode) {
++        case UA_MESSAGESECURITYMODE_NONE: return "None";
++        case UA_MESSAGESECURITYMODE_SIGN: return "Sign";
++        case UA_MESSAGESECURITYMODE_SIGNANDENCRYPT: return "SignAndEncrypt";
++        default: return "Invalid";
++    }
++}
++
+ int main(int argc, char *argv[]) {
+     UA_Client *client = UA_Client_new();
+     UA_ClientConfig_setDefault(UA_Client_getConfig(client));
++    const char *endpointUrl = (argc > 1) ? argv[1] : "opc.tcp://localhost:4840";
+ 
+     /* Listing endpoints */
+     UA_EndpointDescription* endpointArray = NULL;
+     size_t endpointArraySize = 0;
+-    UA_StatusCode retval = UA_Client_getEndpoints(client, "opc.tcp://localhost:4840",
++    UA_StatusCode retval = UA_Client_getEndpoints(client, endpointUrl,
+                                                   &endpointArraySize, &endpointArray);
+     if(retval != UA_STATUSCODE_GOOD) {
+         printf("Could not get the endpoints\n");
+@@ -46,19 +68,37 @@ int main(int argc, char *argv[]) {
+     }
+     printf("%i endpoints found\n", (int)endpointArraySize);
+     for(size_t i=0;i<endpointArraySize;i++) {
+-        printf("URL of endpoint %i is %.*s\n", (int)i,
+-               (int)endpointArray[i].endpointUrl.length,
+-               endpointArray[i].endpointUrl.data);
++        UA_EndpointDescription *ep = &endpointArray[i];
++        printf("Endpoint %i\n", (int)i);
++        printf("  URL: %.*s\n", (int)ep->endpointUrl.length, ep->endpointUrl.data);
++        printf("  SecurityMode: %s\n", securityModeToString(ep->securityMode));
++        printf("  SecurityPolicy: %.*s\n", (int)ep->securityPolicyUri.length, ep->securityPolicyUri.data);
++        printf("  TransportProfile: %.*s\n", (int)ep->transportProfileUri.length, ep->transportProfileUri.data);
++        printf("  SecurityLevel: %u\n", ep->securityLevel);
++
++        if(ep->userIdentityTokensSize > 0) {
++            printf("  UserTokens:\n");
++            for(size_t j = 0; j < ep->userIdentityTokensSize; j++) {
++                UA_UserTokenPolicy *tp = &ep->userIdentityTokens[j];
++                printf("    - Type: %s, PolicyId: %.*s, SecurityPolicy: %.*s\n",
++                       userTokenTypeToString(tp->tokenType),
++                       (int)tp->policyId.length, tp->policyId.data,
++                       (int)tp->securityPolicyUri.length, tp->securityPolicyUri.data);
++            }
++        }
+     }
+     UA_Array_delete(endpointArray,endpointArraySize, &UA_TYPES[UA_TYPES_ENDPOINTDESCRIPTION]);
+     UA_Client_delete(client);
++
++    if(argc > 1)
++        return EXIT_SUCCESS;
+     
+     /* Create a client and connect */
+     client = UA_Client_new();
+     UA_ClientConfig_setDefault(UA_Client_getConfig(client));
+     /* Connect to a server */
+     /* anonymous connect would be: retval = UA_Client_connect(client, "opc.tcp://localhost:4840"); */
+-    retval = UA_Client_connectUsername(client, "opc.tcp://localhost:4840", "user1", "password");
++    retval = UA_Client_connectUsername(client, endpointUrl, "user1", "password");
+     if(retval != UA_STATUSCODE_GOOD) {
+         printf("Could not connect\n");
+         UA_Client_delete(client);
